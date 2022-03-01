@@ -10,6 +10,7 @@ const search = () => {
     const searchValue = searchText.value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue.toLowerCase()}`
     loadApi(url)
+    searchText.value = ''
 }
 // loading api
 const loadApi = async (url) => {
@@ -28,7 +29,7 @@ const loadApi = async (url) => {
 // displaying phones
 const display = (phones) => {
     const showdetailssection = document.getElementById('phone-spec');
-
+    document.getElementById('show-more').innerHTML = ''
     showdetailssection.innerHTML = '';
     console.log(phones)
     previouosData = phones;
@@ -46,6 +47,7 @@ const display = (phones) => {
 }
 // show phones
 const showPhones = (data) => {
+
     const showPhones = document.getElementById('show-phones');
     showPhones.innerHTML = ''
     data.forEach(phone => {
@@ -85,12 +87,34 @@ const showDetailsData = (phone) => {
     const showdetailssection = document.getElementById('phone-spec');
     showdetailssection.innerHTML = '';
     let release;
-
+    let wlan;
+    let bluetooth;
+    let gps;
+    let nfc;
+    let radio;
+    let usb;
 
     if (phone.releaseDate == '') {
         release = 'No release date found'
     } else {
         release = phone.releaseDate;
+    }
+    // console.log(phone.others)
+    if (phone.others === undefined) {
+        wlan = 'no wlan found'
+        gps = 'no gps found'
+        bluetooth = 'no bluetooth found';
+        nfc = ' no nfc found';
+        radio = 'no radio found'
+        usb = 'no usb found'
+
+    } else {
+        wlan = phone.others.WLAN;
+        bluetooth = phone.others.Bluetooth;
+        gps = phone.others.GPS;
+        nfc = phone.others.NFC
+        radio = phone.others.Radio
+        usb = phone.others.USB;
     }
 
     const div = document.createElement('div')
@@ -113,17 +137,17 @@ const showDetailsData = (phone) => {
     <hr>
     <h4>storage: <span>${phone.mainFeatures.storage}</span></h4>
     <hr>
-    <h4>wlan: <span>${phone.others.WLAN}</span></h4>
+    <h4>wlan: <span>${wlan}</span></h4>
     <hr>
-    <h4>bluetooth: <span>${phone.others.Bluetooth}</span></h4>
+    <h4>bluetooth: <span>${bluetooth}</span></h4>
     <hr>
-    <h4>Gps: <span>${phone.others.GPS}</span></h4>
+    <h4>Gps: <span>${gps}</span></h4>
     <hr>
-    <h4>Nfc: <span>${phone.others.NFC}</span></h4>
+    <h4>Nfc: <span>${nfc}</span></h4>
     <hr>
-    <h4>radio: <span>${phone.others.Radio}</span></h4>
+    <h4>radio: <span>${radio}</span></h4>
     <hr>
-    <h4>Usb: <span>${phone.others.USB}</span></h4>
+    <h4>Usb: <span>${usb}</span></h4>
     <hr>
 </div>
     `
