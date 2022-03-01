@@ -1,3 +1,5 @@
+let previouosData;
+let newData;
 //spinner function
 const spinner = spin => {
     document.getElementById('spinner').style.display = spin;
@@ -23,26 +25,31 @@ const loadApi = async (url) => {
     }
     display(datas.data)
 }
-
 // displaying phones
 const display = (phones) => {
     const showdetailssection = document.getElementById('phone-spec');
-    const showPhones = document.getElementById('show-phones');
-    showPhones.innerHTML = ''
+
     showdetailssection.innerHTML = '';
     console.log(phones)
-
-    const previouosData = phones;
-    const newData = previouosData.slice(0, 20);
+    previouosData = phones;
+    newData = previouosData.slice(0, 20);
+    console.log(newData)
     if (phones.length >= 20) {
-
+        showPhones(newData);
+        // document.getElementById('show-more-btn').style.display = 'block'
+        document.getElementById('show-more').innerHTML = `
+        <button class="btn btn-danger mx-auto" id="show-more-btn" onclick="showMore()">Show More</button>
+       `
+    } else {
+        showPhones(previouosData);
     }
+}
+// show phones
+const showPhones = (data) => {
+    const showPhones = document.getElementById('show-phones');
+    showPhones.innerHTML = ''
+    data.forEach(phone => {
 
-
-
-
-
-    phones.forEach(phone => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
@@ -60,14 +67,11 @@ const display = (phones) => {
     </div>`
         showPhones.appendChild(div)
     });
-
 }
-
-// show
-// const showPhones = () => {
-
-
-// }
+//show more button
+const showMore = () => {
+    showPhones(previouosData);
+}
 // show details
 const showDetails = async (id) => {
     url = `https://openapi.programming-hero.com/api/phone/${id}`
