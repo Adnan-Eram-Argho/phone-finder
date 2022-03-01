@@ -71,6 +71,7 @@ const showPhones = (data) => {
 //show more button
 const showMore = () => {
     showPhones(previouosData);
+    document.getElementById('show-more').innerHTML = ''
 }
 // show details
 const showDetails = async (id) => {
