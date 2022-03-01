@@ -24,6 +24,7 @@ const loadApi = async (url) => {
     display(datas.data)
 }
 loadApi();
+// displaying phones
 const display = (phones) => {
     const showPhones = document.getElementById('show-phones');
     showPhones.innerHTML = ''
@@ -54,13 +55,14 @@ const display = (phones) => {
 
 }
 
+// show details
+const showDetails = async (id) => {
+    url = `https://openapi.programming-hero.com/api/phone/${id}`
+    const ref = await fetch(url);
+    const data = await ref.json();
+    showDetailsData(data.data)
+}
 
-const showDetails = (id) => {
-    try {
-        console.log(`${id}`);
-        console.log('hello')
-
-    } catch (error) {
-        console.log(error)
-    }
+const showDetailsData = (phone) => {
+    console.log(phone)
 }
