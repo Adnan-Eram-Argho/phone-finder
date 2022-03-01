@@ -33,18 +33,34 @@ const display = (phones) => {
         const div = document.createElement('div');
         div.classList.add('col');
         console.log(phone)
-        div.innerHTML = `
-        <div class="card h-100" onclick = showDetails(${phone.slug})>
-            <img src="${phone.image}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${phone.brand}</h5>
-                    <p class="card-text">${phone.phone_name}</p>
-                    <button class="btn btn-danger ">details</button>
-            </div>
-           
-        </div>`
+        try {
+            div.innerHTML = `
+    <div class="card h-100" >
+        <img src="${phone.image}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${phone.brand}</h5>
+                <p class="card-text">${phone.phone_name}</p>
+
+                <button class="btn btn-danger" onclick="showDetails('${phone.slug}')">Details</button>
+        </div>
+       
+    </div>`
+        } catch (error) {
+            console.log(error)
+        }
+
         showPhones.appendChild(div)
     });
 
 }
 
+
+const showDetails = (id) => {
+    try {
+        console.log(`${id}`);
+        console.log('hello')
+
+    } catch (error) {
+        console.log(error)
+    }
+}
