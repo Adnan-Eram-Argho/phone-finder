@@ -1,0 +1,28 @@
+/* general */
+.text{
+    font-weight: 800;
+}
+/* header */
+#title{
+color:blueviolet;
+font-weight: 600;
+}
+/* spinner */
+#spinner{
+    display:none;
+    position: absolute;
+    top:50%;
+    right:46%;
+}
+/* searchBox */
+#SearchBox{
+    height:38px;
+}
+.searchDiv{
+    width:300px;
+}
+#error-msg{
+    display:none;
+   
+    font-size: 13px;
+}
