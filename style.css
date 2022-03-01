@@ -2,9 +2,12 @@
 .text{
     font-weight: 800;
 }
+body{
+    background-color: rgba(204, 203, 203, 0.445);
+}
 /* header */
 #title{
-color:blueviolet;
+color:#BB2D3B;
 font-weight: 600;
 }
 /* spinner */
@@ -25,4 +28,13 @@ font-weight: 600;
     display:none;
    
     font-size: 13px;
+}
+/* display */
+.cards,.col,.card-img-top{
+    box-shadow: 10px 10px 100x ;
+    border-radius: 40px;
+}
+.card-img-top{
+    width:50%;
+    border-radius: 0px;
 }
