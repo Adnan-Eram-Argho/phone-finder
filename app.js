@@ -30,14 +30,22 @@ const display = (phones) => {
     const showPhones = document.getElementById('show-phones');
     showPhones.innerHTML = ''
     showdetailssection.innerHTML = '';
+    console.log(phones)
+
+    const previouosData = phones;
+    const newData = previouosData.slice(0, 20);
+    if (phones.length >= 20) {
+
+    }
+
+
+
+
+
     phones.forEach(phone => {
-
-
         const div = document.createElement('div');
         div.classList.add('col');
-        console.log(phone)
-        try {
-            div.innerHTML = `
+        div.innerHTML = `
     <div class="card h-100 cards" >
     <div class="d-flex justify-content-center mt-5">
         <img src="${phone.image}" class="card-img-top" alt="...">
@@ -50,16 +58,16 @@ const display = (phones) => {
         </div>
        
     </div>`
-
-        } catch (error) {
-            console.log(error)
-        }
-
         showPhones.appendChild(div)
     });
 
 }
 
+// show
+// const showPhones = () => {
+
+
+// }
 // show details
 const showDetails = async (id) => {
     url = `https://openapi.programming-hero.com/api/phone/${id}`
@@ -67,13 +75,12 @@ const showDetails = async (id) => {
     const data = await ref.json();
     showDetailsData(data.data)
 }
-
+// load datas of detail
 const showDetailsData = (phone) => {
     const showdetailssection = document.getElementById('phone-spec');
     showdetailssection.innerHTML = '';
     let release;
-    console.log(phone)
-    console.log(phone.name)
+
 
     if (phone.releaseDate == '') {
         release = 'No release date found'
